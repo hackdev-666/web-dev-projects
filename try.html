@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+
+  .faq-container {
+    perspective: 1000px;
+    width: 80%;
+  }
+
+  .faq {
+    transform-style: preserve-3d;
+    transition: transform 0.5s;
+    margin-bottom: 20px;
+  }
+
+  .faq:hover {
+    transform: rotateY(20deg);
+  }
+
+  .question {
+    background: linear-gradient(135deg, #f6d365, #fda085);
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s;
+    font-weight: bold;
+  }
+
+  .question:hover {
+    background: linear-gradient(135deg, #fda085, #f6d365);
+  }
+
+  .answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-in-out;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 0 15px;
+    border-radius: 8px;
+    margin-top: 5px;
+  }
+
+  .faq-number {
+    font-size: 0.9em;
+    color: #555;
+  }
+</style>
+</head>
+<body>
+
+<div class="faq-container">
+  <!-- FAQ 1 -->
+  <div class="faq" id="faq1">
+    <div class="question"><span class="faq-number">1. </span>What is HTML?</div>
+    <div class="answer">
+      <p>HTML is the standard markup language for creating web pages and web applications.</p>
+    </div>
+  </div>
+
+  <!-- FAQ 2 -->
+  <div class="faq" id="faq2">
+    <div class="question"><span class="faq-number">2. </span>What is CSS?</div>
+    <div class="answer">
+      <p>CSS is used to control the style of a web document in a simple and easy way.</p>
+    </div>
+  </div>
+
+  <!-- FAQ 3 -->
+  <div class="faq" id="faq3">
+    <div class="question"><span class="faq-number">3. </span>What is JavaScript?</div>
+    <div class="answer">
+      <p>JavaScript is a dynamic computer programming language, commonly used as part of web browsers.</p>
+    </div>
+  </div>
+
+  <!-- Add more FAQs here -->
+</div>
+
+<script>
+  document.querySelectorAll('.faq').forEach(faq => {
+    faq.querySelector('.question').addEventListener('click', () => {
+      const answer = faq.querySelector('.answer');
+      const answerIsVisible = answer.style.maxHeight;
+
+      document.querySelectorAll('.answer').forEach(a => a.style.maxHeight = null);
+
+      if (!answerIsVisible) {
+        answer.style.maxHeight = answer.scrollHeight + 'px';
+      } else {
+        answer.style.maxHeight = null;
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
